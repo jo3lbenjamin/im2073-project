@@ -1,0 +1,33 @@
+.general-sans-logo {
+    font-family: GeneralSans-Bold;
+}
+
+.general-sans-medium {
+    font-family: GeneralSans-Medium;
+}
+
+.general-sans {
+    font-family: GeneralSans-Variable;
+}
+
+
+/* grayish black */
+.merlin { 
+    color: #45413c;
+}
+
+.timberwolf { 
+    color: #d4d2cf;
+}
+
+.oslo-gray { 
+    color: #989b9c;
+}
+
+.pewter { 
+    color: #9ba49d;
+}
+
+.baby-blue {
+    color: #E7F2F8;
+}
