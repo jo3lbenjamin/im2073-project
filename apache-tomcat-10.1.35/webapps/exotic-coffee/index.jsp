@@ -22,7 +22,7 @@
     </nav>
 
     <!-- ✅ Hero Section -->
-    <section class="relative h-screen bg-[url('https://cdn.pixabay.com/photo/2018/03/14/08/07/coffee-3224527_1280.jpg')] bg-cover bg-center flex items-center justify-center text-white">
+    <section class="relative h-screen bg-[url('https://cdn.pixabay.com/photo/2019/10/31/07/14/coffee-4591159_1280.jpg')] bg-cover bg-center flex items-center justify-center text-white">
         <div class="text-center">
             <h2 class="text-5xl font-bold">A World of Coffee, One Click Away</h2>
             <p class="text-lg mt-4">Discover the finest coffee from Vietnam, Hawaii, Ethiopia, and beyond.</p>
@@ -68,7 +68,7 @@
                     while (rs.next()) {
             %>
             <div class="bg-white p-4 shadow-md rounded-md">
-                <img src="<%= rs.getString("image_url") %>" class="w-full rounded-md" alt="Coffee">
+                <img src="<%= rs.getString("image_url") %>" style="height: 250px; object-fit: cover;" class="w-full rounded-md" alt="Coffee">
                 <h4 class="text-lg font-semibold mt-2"><%= rs.getString("name") %></h4>
                 <p class="text-gray-600">Origin: <%= rs.getString("origin") %></p>
                 <p class="text-gray-600">Price: $<%= rs.getDouble("price") %></p>

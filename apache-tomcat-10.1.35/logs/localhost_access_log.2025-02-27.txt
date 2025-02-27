@@ -54,3 +54,5 @@
 0:0:0:0:0:0:0:1 - - [27/Feb/2025:22:11:33 +0800] "GET /exotic-coffee/index.jsp HTTP/1.1" 200 4903
 0:0:0:0:0:0:0:1 - - [27/Feb/2025:22:20:25 +0800] "GET /exotic-coffee/index.jsp HTTP/1.1" 200 4924
 0:0:0:0:0:0:0:1 - - [27/Feb/2025:22:20:54 +0800] "GET /exotic-coffee/index.jsp HTTP/1.1" 200 4926
+0:0:0:0:0:0:0:1 - - [27/Feb/2025:22:26:59 +0800] "GET /exotic-coffee/index.jsp HTTP/1.1" 200 4926
+0:0:0:0:0:0:0:1 - - [27/Feb/2025:22:37:23 +0800] "GET /exotic-coffee/index.jsp HTTP/1.1" 200 5052
