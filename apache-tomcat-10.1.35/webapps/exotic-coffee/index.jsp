@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.Connection, java.sql.DriverManager, java.sql.Statement, java.sql.ResultSet" %>
-
+<link rel="stylesheet" href="./stylesheets/fonts.css">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@
 
     <!-- ✅ Navigation Bar -->
     <nav class="bg-white shadow-md p-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-gray-800">Exotic Coffee.</h1>
+        <h1 class="text-2xl font-bold text-gray-800">exotic coffee.</h1>
         <ul class="flex space-x-6">
             <li><a href="#shop" class="text-gray-600 hover:text-black">Shop</a></li>
             <li><a href="#subscribe" class="text-gray-600 hover:text-black">Subscribe</a></li>
@@ -22,8 +22,12 @@
     </nav>
 
     <!-- ✅ Hero Section -->
-    <section class="relative h-screen bg-[url('https://cdn.pixabay.com/photo/2019/10/31/07/14/coffee-4591159_1280.jpg')] bg-cover bg-center flex items-center justify-center text-white">
-        <div class="text-center">
+    <section class="relative h-screen flex items-center justify-center text-white"> 
+        <video autoplay muted loop autoplay muted loop class="absolute w-full h-full object-cover">
+            <source src="https://cdn.pixabay.com/video/2024/04/25/209419_large.mp4" type="video/mp4">
+        </video>
+
+        <div class="relative z-10 text-center">
             <h2 class="text-5xl font-bold">A World of Coffee, One Click Away</h2>
             <p class="text-lg mt-4">Discover the finest coffee from Vietnam, Hawaii, Ethiopia, and beyond.</p>
             <a href="#shop" class="mt-6 inline-block bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800">Explore Now</a>
@@ -68,7 +72,7 @@
                     while (rs.next()) {
             %>
             <div class="bg-white p-4 shadow-md rounded-md">
-                <img src="<%= rs.getString("image_url") %>" style="height: 250px; object-fit: cover;" class="w-full rounded-md" alt="Coffee">
+                <img src="<%= rs.getString("image_url") %>" style="height: 250px; object-fit: contain;" class="w-full rounded-md" alt="Coffee">
                 <h4 class="text-lg font-semibold mt-2"><%= rs.getString("name") %></h4>
                 <p class="text-gray-600">Origin: <%= rs.getString("origin") %></p>
                 <p class="text-gray-600">Price: $<%= rs.getDouble("price") %></p>
