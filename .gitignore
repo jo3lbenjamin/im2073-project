@@ -2,3 +2,5 @@
 mysql-8.4.4-winx64/
 # Ignore MySQL connector directory
 mysql-connector-j-9.2.0/
+
+mysql-8.4.4-winx64/bin/mysqld.pdb
