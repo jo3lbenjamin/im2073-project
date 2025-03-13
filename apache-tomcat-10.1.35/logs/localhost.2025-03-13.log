@@ -1,0 +1,262 @@
+13-Mar-2025 10:35:35.129 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+13-Mar-2025 10:35:35.129 INFO [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+13-Mar-2025 10:35:35.133 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@9ed238c')
+13-Mar-2025 10:56:20.302 SEVERE [http-nio-0.0.0.0-9999-exec-5] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/exotic-coffee] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [33] in the jsp file: [/shop.jsp]
+Duplicate local variable page
+30:         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 px-6">
+31:             
+32:             <%  
+33:                 int page = 1;
+34:                 int productsPerPage = 8; // Number of products per page
+35: 
+36:                 if (request.getParameter("page") != null) {
+
+
+An error occurred at line: [87] in the jsp file: [/shop.jsp]
+totalPages cannot be resolved to a variable
+84:         <% if (page > 1) { %>
+85:             <a href="shop.jsp?page=<%= page - 1 %>" class="mx-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Previous</a>
+86:         <% } %>
+87:         <% for (int i = 1; i <= totalPages; i++) { %>
+88:             <a href="shop.jsp?page=<%= i %>" class="mx-2 px-4 py-2 <%= (i == page) ? "bg-black text-white" : "bg-gray-300 hover:bg-gray-400" %> rounded"><%= i %></a>
+89:         <% } %>
+90:         <% if (page < totalPages) { %>
+
+
+An error occurred at line: [90] in the jsp file: [/shop.jsp]
+totalPages cannot be resolved to a variable
+87:         <% for (int i = 1; i <= totalPages; i++) { %>
+88:             <a href="shop.jsp?page=<%= i %>" class="mx-2 px-4 py-2 <%= (i == page) ? "bg-black text-white" : "bg-gray-300 hover:bg-gray-400" %> rounded"><%= i %></a>
+89:         <% } %>
+90:         <% if (page < totalPages) { %>
+91:             <a href="shop.jsp?page=<%= page + 1 %>" class="mx-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Next</a>
+92:         <% } %>
+93:     </div>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [33] in the jsp file: [/shop.jsp]
+Duplicate local variable page
+30:         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 px-6">
+31:             
+32:             <%  
+33:                 int page = 1;
+34:                 int productsPerPage = 8; // Number of products per page
+35: 
+36:                 if (request.getParameter("page") != null) {
+
+
+An error occurred at line: [87] in the jsp file: [/shop.jsp]
+totalPages cannot be resolved to a variable
+84:         <% if (page > 1) { %>
+85:             <a href="shop.jsp?page=<%= page - 1 %>" class="mx-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Previous</a>
+86:         <% } %>
+87:         <% for (int i = 1; i <= totalPages; i++) { %>
+88:             <a href="shop.jsp?page=<%= i %>" class="mx-2 px-4 py-2 <%= (i == page) ? "bg-black text-white" : "bg-gray-300 hover:bg-gray-400" %> rounded"><%= i %></a>
+89:         <% } %>
+90:         <% if (page < totalPages) { %>
+
+
+An error occurred at line: [90] in the jsp file: [/shop.jsp]
+totalPages cannot be resolved to a variable
+87:         <% for (int i = 1; i <= totalPages; i++) { %>
+88:             <a href="shop.jsp?page=<%= i %>" class="mx-2 px-4 py-2 <%= (i == page) ? "bg-black text-white" : "bg-gray-300 hover:bg-gray-400" %> rounded"><%= i %></a>
+89:         <% } %>
+90:         <% if (page < totalPages) { %>
+91:             <a href="shop.jsp?page=<%= page + 1 %>" class="mx-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Next</a>
+92:         <% } %>
+93:     </div>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1570)
+13-Mar-2025 10:56:37.634 SEVERE [http-nio-0.0.0.0-9999-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/exotic-coffee] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [33] in the jsp file: [/shop.jsp]
+Duplicate local variable page
+30:         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 px-6">
+31:             
+32:             <%  
+33:                 int page = 1;
+34:                 int productsPerPage = 8; // Number of products per page
+35: 
+36:                 if (request.getParameter("page") != null) {
+
+
+An error occurred at line: [87] in the jsp file: [/shop.jsp]
+totalPages cannot be resolved to a variable
+84:         <% if (page > 1) { %>
+85:             <a href="shop.jsp?page=<%= page - 1 %>" class="mx-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Previous</a>
+86:         <% } %>
+87:         <% for (int i = 1; i <= totalPages; i++) { %>
+88:             <a href="shop.jsp?page=<%= i %>" class="mx-2 px-4 py-2 <%= (i == page) ? "bg-black text-white" : "bg-gray-300 hover:bg-gray-400" %> rounded"><%= i %></a>
+89:         <% } %>
+90:         <% if (page < totalPages) { %>
+
+
+An error occurred at line: [90] in the jsp file: [/shop.jsp]
+totalPages cannot be resolved to a variable
+87:         <% for (int i = 1; i <= totalPages; i++) { %>
+88:             <a href="shop.jsp?page=<%= i %>" class="mx-2 px-4 py-2 <%= (i == page) ? "bg-black text-white" : "bg-gray-300 hover:bg-gray-400" %> rounded"><%= i %></a>
+89:         <% } %>
+90:         <% if (page < totalPages) { %>
+91:             <a href="shop.jsp?page=<%= page + 1 %>" class="mx-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Next</a>
+92:         <% } %>
+93:     </div>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [33] in the jsp file: [/shop.jsp]
+Duplicate local variable page
+30:         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 px-6">
+31:             
+32:             <%  
+33:                 int page = 1;
+34:                 int productsPerPage = 8; // Number of products per page
+35: 
+36:                 if (request.getParameter("page") != null) {
+
+
+An error occurred at line: [87] in the jsp file: [/shop.jsp]
+totalPages cannot be resolved to a variable
+84:         <% if (page > 1) { %>
+85:             <a href="shop.jsp?page=<%= page - 1 %>" class="mx-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Previous</a>
+86:         <% } %>
+87:         <% for (int i = 1; i <= totalPages; i++) { %>
+88:             <a href="shop.jsp?page=<%= i %>" class="mx-2 px-4 py-2 <%= (i == page) ? "bg-black text-white" : "bg-gray-300 hover:bg-gray-400" %> rounded"><%= i %></a>
+89:         <% } %>
+90:         <% if (page < totalPages) { %>
+
+
+An error occurred at line: [90] in the jsp file: [/shop.jsp]
+totalPages cannot be resolved to a variable
+87:         <% for (int i = 1; i <= totalPages; i++) { %>
+88:             <a href="shop.jsp?page=<%= i %>" class="mx-2 px-4 py-2 <%= (i == page) ? "bg-black text-white" : "bg-gray-300 hover:bg-gray-400" %> rounded"><%= i %></a>
+89:         <% } %>
+90:         <% if (page < totalPages) { %>
+91:             <a href="shop.jsp?page=<%= page + 1 %>" class="mx-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Next</a>
+92:         <% } %>
+93:     </div>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1570)
+13-Mar-2025 11:45:51.105 INFO [Thread-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+13-Mar-2025 11:45:51.105 INFO [Thread-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+13-Mar-2025 11:45:55.988 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+13-Mar-2025 11:45:55.988 INFO [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+13-Mar-2025 11:45:55.988 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@426b6a74')
+13-Mar-2025 11:46:10.509 INFO [Thread-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+13-Mar-2025 11:46:10.509 INFO [Thread-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+13-Mar-2025 11:46:23.160 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+13-Mar-2025 11:46:23.160 INFO [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+13-Mar-2025 11:46:23.160 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@83298d7')
+13-Mar-2025 11:47:43.071 SEVERE [http-nio-0.0.0.0-9999-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [RegisterServlet] in context with path [/exotic-coffee] threw exception [Database error: Unknown column 'phone_no' in 'field list'] with root cause
+	java.sql.SQLSyntaxErrorException: Unknown column 'phone_no' in 'field list'
+		at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112)
+		at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+		at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:990)
+		at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1168)
+		at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1103)
+		at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1450)
+		at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1086)
+		at RegisterServlet.doPost(RegisterServlet.java:73)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1570)
+13-Mar-2025 11:59:51.571 INFO [Thread-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+13-Mar-2025 11:59:51.571 INFO [Thread-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+13-Mar-2025 12:00:05.602 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+13-Mar-2025 12:00:05.602 INFO [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+13-Mar-2025 12:00:05.607 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@5b080f3a')

@@ -19,21 +19,20 @@
 <nav class="top-0 left-0 w-full flex absolute justify-between items-center py-3 px-4 text-white z-10">
     <h1 class="text-2xl font-bold">Exotic Coffee.</h1>
     <ul class="flex space-x-6">
-        <li><a href="index.jsp" class="font-semibold hover:text-gray-300">HOME</a></li>
-        <li><a href="shop.jsp" class="font-semibold hover:text-gray-300">SHOP</a></li>
-        <li><a href="about.jsp" class="font-semibold hover:text-gray-300">ABOUT US</a></li>
+        <li><a href="index.jsp" class="font-semibold hover:text-gray-300">Home</a></li>
+        <li><a href="shop.jsp" class="font-semibold hover:text-gray-300">Shop</a></li>
+        <li><a href="about.jsp" class="font-semibold hover:text-gray-300">About Us</a></li>
+        <li><a href="register.jsp" class="font-semibold hover:text-gray-300">Log In/Register</a></li>
     </ul>
 </nav>
 
     
-
-
     <!-- Hero Section with Full-Width Video Background -->
     <section class="relative h-screen flex items-center justify-center text-white">
         <video autoplay muted loop class="absolute w-full h-full object-cover">
             <source src="https://cdn.pixabay.com/video/2024/04/25/209419_large.mp4" type="video/mp4">
         </video>
-        <div class="relative general-sans z-10 text-center">
+        <div class="relative general-sans z-10 text-center">        
             <h2 class="text-5xl font-bold">The World’s Finest Coffee</h2>
             <p class="text-lg mt-4">Indulge in the rich aromas of hand-picked coffee from across the globe.</p>
             <a href="shop.jsp" class="mt-6 inline-block bg-white text-black py-3 px-6 rounded-full hover:bg-gray-200">Shop Now</a>
