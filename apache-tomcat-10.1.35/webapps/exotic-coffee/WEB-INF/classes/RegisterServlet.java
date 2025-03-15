@@ -22,7 +22,7 @@ public class RegisterServlet extends HttpServlet {
             role = "customer"; // Default role
         }
 
-        // ✅ Validate username: 4-20 characters, only letters, numbers, underscore
+        //  Validate username: 4-20 characters, only letters, numbers, underscore
         String usernameRegex = "^[a-zA-Z0-9_]{4,20}$";
         if (!Pattern.matches(usernameRegex, username)) {
             request.setAttribute("error", "Invalid username. Use 4-20 letters, numbers, or underscores.");
@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        // ✅ Validate password: 8+ chars, 1 uppercase, 1 lowercase, 1 number
+        //  Validate password: 8+ chars, 1 uppercase, 1 lowercase, 1 number
         String passwordRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$";
         if (!Pattern.matches(passwordRegex, password)) {
             request.setAttribute("error", "Password must have 8+ chars, 1 uppercase, 1 lowercase, 1 number.");
@@ -44,11 +44,11 @@ public class RegisterServlet extends HttpServlet {
         ResultSet rs = null;
 
         try {
-            // ✅ Connect to MySQL Database (Add useSSL=false&allowPublicKeyRetrieval=true to avoid SSL errors)
+            //  Connect to MySQL Database (Add useSSL=false&allowPublicKeyRetrieval=true to avoid SSL errors)
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/exotic_coffee_shop?useSSL=false&allowPublicKeyRetrieval=true", "root", "Transcom#188");
 
-            // ✅ Check if username already exists
+            //  Check if username already exists
             checkUser = conn.prepareStatement("SELECT * FROM users WHERE username = ?");
             checkUser.setString(1, username);
             rs = checkUser.executeQuery();
@@ -59,10 +59,10 @@ public class RegisterServlet extends HttpServlet {
                 return;
             }
 
-            // ✅ Hash the password using BCrypt
+            //  Hash the password using BCrypt
             String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
 
-            // ✅ Insert user into database
+            //  Insert user into database
             insertUser = conn.prepareStatement("INSERT INTO users (username, fullname, phone_no, email, password_hash, role) VALUES (?, ?, ?, ?, ?, ?)");
             insertUser.setString(1, username);
             insertUser.setString(2, fullname);
@@ -72,13 +72,13 @@ public class RegisterServlet extends HttpServlet {
             insertUser.setString(6, role);
             insertUser.executeUpdate();
 
-            // ✅ Redirect to login page with success message
+            //  Redirect to login page with success message
             response.sendRedirect("login.jsp?success=registered");
 
         } catch (ClassNotFoundException | SQLException e) {
             throw new ServletException("Database error: " + e.getMessage(), e);
         } finally {
-            // ✅ Close resources to prevent memory leaks
+            //  Close resources to prevent memory leaks
             try { if (rs != null) rs.close(); } catch (SQLException ignored) {}
             try { if (checkUser != null) checkUser.close(); } catch (SQLException ignored) {}
             try { if (insertUser != null) insertUser.close(); } catch (SQLException ignored) {}

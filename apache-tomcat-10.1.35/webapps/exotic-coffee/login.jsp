@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Exotic Coffee</title>
+    <title>Login | Exotic Coffee</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./stylesheets/general-sans.css">
+    <link rel="stylesheet" href="./stylesheets/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
+<body class="bg-gray-100 flex items-center justify-center h-screen general-sans">
 
     <div class="bg-white p-8 rounded shadow-lg w-96">
         <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>

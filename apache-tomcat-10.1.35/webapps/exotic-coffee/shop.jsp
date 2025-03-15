@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.sql.Connection, java.sql.DriverManager, java.sql.PreparedStatement, java.sql.ResultSet" %>
+<%@ page import="java.util.List, java.util.Map" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,91 +12,81 @@
     <link rel="stylesheet" href="./stylesheets/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
+<body class="flex flex-col min-h-screen general-sans">
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 text-black z-10">
-        <a href="index.jsp" class="text-2xl font-bold">Exotic Coffee.</a>
+    <!-- Main Navigation Bar -->
+    <nav class="top-0 left-0 w-full flex absolute justify-between items-center py-3 px-4 text-black z-10">
+        <h1 class="text-2xl font-bold">Exotic Coffee.</h1>
         <ul class="flex space-x-6">
-            <li><a href="index.jsp" class="font-semibold hover:text-gray-500">HOME</a></li>
-            <li><a href="shop.jsp" class="font-semibold text-gray-500">SHOP</a></li>
-            <li><a href="about.jsp" class="font-semibold hover:text-gray-500">ABOUT US</a></li>
+            <li><a href="index.jsp" class="font-semibold hover:text-gray-300">Home</a></li>
+            <li><a href="products" class="font-semibold hover:text-gray-300">Shop</a></li>
+            <li><a href="about.jsp" class="font-semibold hover:text-gray-300">About Us</a></li>
+            <li><a href="register.jsp" class="font-semibold hover:text-gray-300">Log In/Register</a></li>
         </ul>
     </nav>
 
-    <!-- Featured Product Section -->
-    <section class="py-16 general-sans text-center">
-        <h3 class="text-3xl font-bold mb-6">Shop Our Exclusive Selection</h3>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 px-6">
-            
-            <%  
-                int page = 1;
-                int productsPerPage = 8; // Number of products per page
+    <!-- Main Content -->
+    <section class="py-5 flex-grow">
+        <div class="container pt-32 pb-12">
+            <h2 class="text-center text-5xl font-bold mb-6">Our Coffee Selection</h2>
 
-                if (request.getParameter("page") != null) {
-                    page = Integer.parseInt(request.getParameter("page"));
-                }
-                
-                int start = (page - 1) * productsPerPage; // Calculate offset
+            <div class="row">
+                <%
+                    // Retrieve attributes set by the servlet
+                    List<Map<String, Object>> products = (List<Map<String, Object>>) request.getAttribute("products");
+                    Integer totalPages = (Integer) request.getAttribute("totalPages");
+                    Integer currentPage = (Integer) request.getAttribute("currentPage");
 
-                try {
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/exotic_coffee_shop", "root", "Transcom#188");
+                    // Fallback to defaults if they're null
+                    if (totalPages == null) totalPages = 1;
+                    if (currentPage == null) currentPage = 1;
 
-                    // Get products with pagination
-                    String sql = "SELECT * FROM products LIMIT ? OFFSET ?";
-                    PreparedStatement stmt = conn.prepareStatement(sql);
-                    stmt.setInt(1, productsPerPage);
-                    stmt.setInt(2, start);
-                    ResultSet rs = stmt.executeQuery();
-
-                    while (rs.next()) {
-            %>
-                    <div class="bg-white p-4 rounded-md shadow-lg">
-                        <img src="<%= rs.getString("image_url") %>" style="height: 300px; object-fit: cover;" class="w-full rounded-md" alt="Coffee">
-                        <h4 class="text-lg font-semibold mt-2"><%= rs.getString("name") %></h4>
-                        <p class="text-gray-600">Origin: <%= rs.getString("origin") %></p>
-                        <p class="text-gray-600">Roast: <%= rs.getString("roast_level") %></p>
-                        <p class="text-gray-800 font-bold">Price: $<%= rs.getDouble("price") %></p>
-                        <button class="mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-700">Add to Cart</button>
+                    if (products != null && !products.isEmpty()) {
+                        for (Map<String, Object> product : products) {
+                %>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="<%= product.get("image_url") %>" class="card-img-top" 
+                             style="height: 250px; object-fit: cover;" alt="Coffee Image">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= product.get("name") %></h5>
+                            <p class="card-text text-muted">Brand: <%= product.get("brand") %></p>
+                            <p class="fw-bold">$<%= product.get("price") %></p>
+                            <!-- Example link to product.jsp if you have a details page -->
+                            <a href="product.jsp?id=<%= product.get("id") %>" class="btn btn-dark">View Product</a>
+                        </div>
                     </div>
-            <%  
+                </div>
+                <%
+                        }
+                    } else {
+                %>
+                <p class="text-center">No products available.</p>
+                <%
                     }
-                    
-                    // Get total product count for pagination
-                    String countSql = "SELECT COUNT(*) FROM products";
-                    PreparedStatement countStmt = conn.prepareStatement(countSql);
-                    ResultSet countRs = countStmt.executeQuery();
-                    countRs.next();
-                    int totalProducts = countRs.getInt(1);
-                    int totalPages = (int) Math.ceil(totalProducts / (double) productsPerPage);
+                %>
+            </div>
 
-                    conn.close();
-                } catch (Exception e) {
-                    out.println("<p>Error fetching coffee data.</p>");
-                }
-            %>
+            <!-- Pagination -->
+            <div class="text-center mt-4">
+                <%
+                    for (int i = 1; i <= totalPages; i++) {
+                %>
+                    <a href="products?page=<%= i %>" 
+                       class="btn btn-outline-dark <%= (i == currentPage) ? "active" : "" %>">
+                        <%= i %>
+                    </a>
+                <%
+                    }
+                %>
+            </div>
         </div>
     </section>
 
-    <!-- Pagination -->
-    <div class="flex justify-center mt-8">
-        <% if (page > 1) { %>
-            <a href="shop.jsp?page=<%= page - 1 %>" class="mx-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Previous</a>
-        <% } %>
-        <% for (int i = 1; i <= totalPages; i++) { %>
-            <a href="shop.jsp?page=<%= i %>" class="mx-2 px-4 py-2 <%= (i == page) ? "bg-black text-white" : "bg-gray-300 hover:bg-gray-400" %> rounded"><%= i %></a>
-        <% } %>
-        <% if (page < totalPages) { %>
-            <a href="shop.jsp?page=<%= page + 1 %>" class="mx-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Next</a>
-        <% } %>
-    </div>
-
     <!-- Footer -->
-    <footer class="bg-black text-white general-sans text-center py-6 mt-12">
+    <footer class="bg-black text-white text-center py-3">
         <p>&copy; IM2073 Project | Joel & Chretienne.</p>
     </footer>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>

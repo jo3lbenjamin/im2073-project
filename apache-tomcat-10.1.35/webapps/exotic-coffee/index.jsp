@@ -20,7 +20,7 @@
     <h1 class="text-2xl font-bold">Exotic Coffee.</h1>
     <ul class="flex space-x-6">
         <li><a href="index.jsp" class="font-semibold hover:text-gray-300">Home</a></li>
-        <li><a href="shop.jsp" class="font-semibold hover:text-gray-300">Shop</a></li>
+        <li><a href="products" class="font-semibold hover:text-gray-300">Shop</a></li>
         <li><a href="about.jsp" class="font-semibold hover:text-gray-300">About Us</a></li>
         <li><a href="register.jsp" class="font-semibold hover:text-gray-300">Log In/Register</a></li>
     </ul>
